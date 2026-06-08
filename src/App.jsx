@@ -6,6 +6,7 @@ function FloatingPhone() {
   const phone = useRef();
 
   useFrame((state) => {
+    if (!phone.current) return;
     const t = state.clock.getElapsedTime();
     phone.current.rotation.y = Math.sin(t * 0.6) * 0.25;
     phone.current.rotation.x = Math.sin(t * 0.4) * 0.05;
@@ -56,8 +57,10 @@ function FloatingCard({ position, color }) {
   const card = useRef();
 
   useFrame((state) => {
+    if (!card.current) return;
     const t = state.clock.getElapsedTime();
-    card.current.position.y = position[1] + Math.sin(t * 1.3 + position[0]) * 0.12;
+    card.current.position.y =
+      position[1] + Math.sin(t * 1.3 + position[0]) * 0.12;
     card.current.rotation.y = Math.sin(t * 0.7) * 0.15;
   });
 
@@ -75,6 +78,7 @@ function Dashboard() {
   const dash = useRef();
 
   useFrame((state) => {
+    if (!dash.current) return;
     const t = state.clock.getElapsedTime();
     dash.current.position.y = Math.sin(t * 1.1) * 0.12;
     dash.current.rotation.y = -0.35 + Math.sin(t * 0.5) * 0.08;
@@ -143,7 +147,8 @@ export default function App() {
           <p className="eyebrow">Websites • Tracking • Local Growth</p>
 
           <h1>
-            Websites that turn visitors into customer actions.
+            Websites that turn visitors into{" "}
+            <span className="highlight">customer actions.</span>
           </h1>
 
           <p className="sub">
@@ -156,8 +161,8 @@ export default function App() {
             <a href="mailto:pvromo356@gmail.com" className="btn primary">
               Get My Free Preview
             </a>
-            <a href="https://romowebstudio.com" className="btn secondary">
-              View Current Site
+            <a href="#demos" className="btn secondary">
+              View Website Demos
             </a>
           </div>
 
@@ -183,6 +188,74 @@ export default function App() {
             <span>Directions</span>
             <span>Report</span>
           </div>
+        </div>
+      </section>
+
+      <section className="demos" id="demos">
+        <div className="sectionHeader">
+          <p className="eyebrow">Featured Website Demos</p>
+          <h2>Built to show real customer actions.</h2>
+          <p>
+            These demos show how different businesses can use a modern website
+            to get more calls, orders, quote requests, directions, bookings,
+            and tracked customer actions.
+          </p>
+        </div>
+
+        <div className="demoGrid">
+          <article className="demoCard">
+            <div className="cardTag">Premium Demo</div>
+            <h3>Restaurant Growth Demo</h3>
+            <p>
+              A premium restaurant website designed to help customers view the
+              menu, make reservations, order online, get directions, connect
+              with social media, and track customer actions each month.
+            </p>
+            <a
+              href="https://vellora.chariotai.app"
+              target="_blank"
+              rel="noreferrer"
+              className="cardButton"
+            >
+              View Restaurant Demo
+            </a>
+          </article>
+
+          <article className="demoCard">
+            <div className="cardTag">Quote Demo</div>
+            <h3>Contractor Quote Request Demo</h3>
+            <p>
+              A contractor-focused website built to help customers view
+              services, check service areas, see project photos, request
+              estimates, call, text project photos, and track important actions.
+            </p>
+            <a
+              href="https://apex-build.chariotai.app"
+              target="_blank"
+              rel="noreferrer"
+              className="cardButton"
+            >
+              View Contractor Demo
+            </a>
+          </article>
+
+          <article className="demoCard">
+            <div className="cardTag">Service Demo</div>
+            <h3>Service Business Demo</h3>
+            <p>
+              A local service business website designed to help customers view
+              services, service areas, recent work, request quotes, call, text,
+              and track what actions customers take.
+            </p>
+            <a
+              href="https://summit-services-18d8ba.chariotai.app"
+              target="_blank"
+              rel="noreferrer"
+              className="cardButton"
+            >
+              View Service Demo
+            </a>
+          </article>
         </div>
       </section>
     </main>
