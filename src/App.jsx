@@ -8,30 +8,27 @@ function FloatingPhone() {
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
     phone.current.rotation.y = Math.sin(t * 0.6) * 0.25;
+    phone.current.rotation.x = Math.sin(t * 0.4) * 0.05;
     phone.current.position.y = Math.sin(t * 1.2) * 0.15;
   });
 
   return (
-    <group ref={phone}>
-      {/* Phone body */}
+    <group ref={phone} position={[0, 0, 0]}>
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[1.8, 3.2, 0.18]} />
         <meshStandardMaterial color="#0f172a" roughness={0.35} metalness={0.25} />
       </mesh>
 
-      {/* Screen */}
       <mesh position={[0, 0, 0.11]}>
         <boxGeometry args={[1.55, 2.85, 0.04]} />
         <meshStandardMaterial color="#f8fafc" />
       </mesh>
 
-      {/* Hero button on phone */}
-      <mesh position={[0, 0.9, 0.16]}>
+      <mesh position={[0, 0.95, 0.16]}>
         <boxGeometry args={[1.1, 0.28, 0.05]} />
         <meshStandardMaterial color="#2563eb" />
       </mesh>
 
-      {/* Lines */}
       <mesh position={[0, 0.35, 0.16]}>
         <boxGeometry args={[1.2, 0.14, 0.05]} />
         <meshStandardMaterial color="#cbd5e1" />
@@ -42,8 +39,12 @@ function FloatingPhone() {
         <meshStandardMaterial color="#cbd5e1" />
       </mesh>
 
-      {/* CTA */}
-      <mesh position={[0, -0.65, 0.16]}>
+      <mesh position={[0, -0.25, 0.16]}>
+        <boxGeometry args={[1.2, 0.14, 0.05]} />
+        <meshStandardMaterial color="#cbd5e1" />
+      </mesh>
+
+      <mesh position={[0, -0.75, 0.16]}>
         <boxGeometry args={[0.95, 0.28, 0.05]} />
         <meshStandardMaterial color="#10b981" />
       </mesh>
@@ -130,14 +131,25 @@ function Scene() {
 export default function App() {
   return (
     <main className="page">
+      <nav className="nav">
+        <div className="logo">Romo Web Studio</div>
+        <a href="mailto:pvromo356@gmail.com" className="navCta">
+          Free Preview
+        </a>
+      </nav>
+
       <section className="hero">
         <div className="heroText">
-          <p className="eyebrow">Romo Web Studio</p>
-          <h1>Websites that turn visitors into customer actions.</h1>
+          <p className="eyebrow">Websites • Tracking • Local Growth</p>
+
+          <h1>
+            Websites that turn visitors into customer actions.
+          </h1>
+
           <p className="sub">
-            We build clean, mobile-friendly websites with call, booking, quote,
-            social media, and location links — plus simple tracking so business
-            owners can see what customers are clicking.
+            We build modern websites that make it easier for customers to call,
+            book, request a quote, order, get directions, and connect with your
+            business — then we track what they click each month.
           </p>
 
           <div className="buttons">
@@ -148,12 +160,29 @@ export default function App() {
               View Current Site
             </a>
           </div>
+
+          <div className="trustRow">
+            <span>Call clicks</span>
+            <span>Booking clicks</span>
+            <span>Quote requests</span>
+            <span>Monthly reports</span>
+          </div>
         </div>
 
-        <div className="hero3d">
-          <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
-            <Scene />
-          </Canvas>
+        <div className="heroVisual">
+          <div className="visualCard">
+            <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
+              <Scene />
+            </Canvas>
+          </div>
+
+          <div className="floatingLabels">
+            <span>Call</span>
+            <span>Book</span>
+            <span>Quote</span>
+            <span>Directions</span>
+            <span>Report</span>
+          </div>
         </div>
       </section>
     </main>
